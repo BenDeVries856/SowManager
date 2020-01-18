@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SowManager.SowDetails">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <!-- Page displays all the information of a given sow 
+                 - all inputs are read only
+                 - pressing the editinfo button lets the user modify the inputs
+                 - if the sow is in the breed status, there is a button to breed it
+                 - the user can also remove sows from this page
+            -->
+
+            <!-- Sow Number -->
+            <Label Text="Sow Number:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="SowNo"
+                Text="" 
+                IsReadOnly="True"/>
+
+             <!-- NickName -->
+            <Label Text="NickName:" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="KnickName" 
+                Text="" 
+                IsReadOnly="True"/>
+
+            <!-- Last Farrowed Date -->
+            <Label Text="Last Farrowed Date:"
+                HorizontalOptions="CenterAndExpand" />
+            <DatePicker x:Name="SowFarrowedDate"
+                MinimumDate="01/01/2018"
+                MaximumDate="01/15/2020"
+                Date="01/15/2018" 
+                IsEnabled="False"/>
+
+            <!-- Last Date Bred -->
+            <Label Text="Last Date Bred:"
+                HorizontalOptions="CenterAndExpand" />
+            <DatePicker x:Name="SowBredDate"
+                MinimumDate="01/01/2018"
+                MaximumDate="01/15/2020"
+                Date="01/15/2018" 
+                IsEnabled="False"/>
+
+            <!-- Date Due --> 
+            <Label Text="Date Due:"
+                HorizontalOptions="CenterAndExpand" />
+            <DatePicker x:Name="SowDueDate"
+                MinimumDate="01/01/2018"
+                MaximumDate="01/15/2020"
+                Date="01/15/2018" 
+                IsEnabled="False"/>
+
+            <!-- Button to edit all of the inputs above -->
+            <Button Text="Edit Info" x:Name="EditButton"
+                HorizontalOptions="Fill"
+                Clicked="EditButtonClicked" 
+                TextColor="White" 
+                BackgroundColor="#3483EB" />
+
+            <!-- Button to breed the sow -->
+            <Button Text="Breed Sow" x:Name="BreedButton"
+                HorizontalOptions="Fill"
+                Clicked="BreedButtonClicked" 
+                TextColor="White" 
+                BackgroundColor="#3483EB" />
+
+            <!-- Button to delete the sow -->
+            <!-- TODO Ask for a reason (dead, shipped) and track the date removed-->
+            <Button Text="Remove Sow" x:Name="RemoveButton"
+                HorizontalOptions="Fill"
+                Clicked="RemoveButtonClicked" 
+                TextColor="White"
+                BackgroundColor="Red" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

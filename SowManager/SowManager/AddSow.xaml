@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SowManager.AddSow">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <!-- Page for filling out all of the details of a new sow
+                 to add it to the database -->
+            <!-- For more information on each of the fields look at the Sow.cs class -->
+
+            <!-- SowNo and Nickname -->
+            <Entry x:Name="SowNo" Text="Sow Number"/>
+            <Entry x:Name="KnickName" Text="NickName"/>
+            
+            <!-- Farrowed and Bred dates, either one should be able to be left empty -->
+            <!-- TODO: add check box if there is no last farrowed date or last bred date -->
+            <DatePicker x:Name="SowFarrowedDate"
+                MinimumDate="01/01/2018"
+                MaximumDate="01/15/2020"
+                Date="01/15/2018" />
+            <DatePicker x:Name="SowBredDate"
+                MinimumDate="01/01/2018"
+                MaximumDate="01/15/2020"
+                Date="01/15/2018" />
+
+            <!-- Submit button, saves the data to the database -->
+            <Button Text="Add"
+                HorizontalOptions="Fill"
+                Clicked="AddButtonClicked" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

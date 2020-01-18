@@ -1,0 +1,17 @@
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\bin\Debug\netstandard2.0\SowManager.deps.json
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\bin\Debug\netstandard2.0\SowManager.dll
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\bin\Debug\netstandard2.0\ref\SowManager.dll
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\bin\Debug\netstandard2.0\SowManager.pdb
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\SowManager.csprojAssemblyReference.cache
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\SowManager.AssemblyInfoInputs.cache
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\SowManager.AssemblyInfo.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\SowManager.dll
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\ref\SowManager.dll
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\SowManager.pdb
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\AddSow.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\Sows.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\SowDetails.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\BreedSow.xaml.g.cs

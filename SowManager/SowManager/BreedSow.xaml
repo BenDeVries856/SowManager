@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SowManager.BreedSow">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <!-- Breed Sow Page
+                 Allows the user to enter a breed date and update a given sow accordingly -->
+            
+            <!-- Label for the Sow Number -->
+            <Label Text="Sow Number:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="SowNo" 
+                Text="" 
+                IsReadOnly="True"/>
+            
+            <!-- Date Picker for the user to select a breed date -->
+            <Label Text="Date Bred:"
+                HorizontalOptions="CenterAndExpand" />
+            <DatePicker x:Name="SowBredDate"
+                MinimumDate="01/01/2018"
+                MaximumDate="01/15/2020"
+                Date="01/15/2018" />
+
+            <!-- Submit Button, updates sow and saves to the database -->
+            <Button Text="Submit"
+                HorizontalOptions="Fill"
+                Clicked="BreedButtonClicked" 
+                TextColor="White" 
+                BackgroundColor="#3483EB" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
