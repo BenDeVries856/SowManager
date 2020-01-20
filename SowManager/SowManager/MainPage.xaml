@@ -19,7 +19,11 @@
         <Button Text="Sows"
                 HorizontalOptions="Fill"
                 Clicked="SowsButtonClicked" />
-        
+
+        <Button Text="Litters"
+                HorizontalOptions="Fill"
+                Clicked="LittersButtonClicked" />
+
     </StackLayout>
 
 </ContentPage>

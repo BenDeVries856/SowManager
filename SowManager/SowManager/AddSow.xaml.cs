@@ -56,8 +56,8 @@ namespace SowManager
                 BredDate = bred,
                 DueDate = due,
                 UltrasoundDate = usound,
-                Status = "READY_TO_BREED"
             };
+            sow.DetermineStatus();
 
             // insert sow into the database
             using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))

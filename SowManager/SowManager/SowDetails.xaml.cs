@@ -44,9 +44,12 @@ namespace SowManager
             // plug the selected sows information into the page form
             SowNo.Text = sow.SowNo;
             KnickName.Text = sow.KnickName;
-            SowFarrowedDate.Date = sow.FarrowedDate;
-            SowBredDate.Date = sow.BredDate;
-            SowDueDate.Date = sow.DueDate;
+            if(sow.FarrowedDate.HasValue)
+                SowFarrowedDate.Date = (DateTime) sow.FarrowedDate;
+            if(sow.BredDate.HasValue)
+                SowBredDate.Date = (DateTime) sow.BredDate;
+            if(sow.DueDate.HasValue)
+                SowDueDate.Date = (DateTime) sow.DueDate;
 
             // only enable to breed button if the sow status is READY_TO_BREED
             if(sow.Status != "READY_TO_BREED")
@@ -76,6 +79,9 @@ namespace SowManager
                 sow.FarrowedDate = SowFarrowedDate.Date;
                 sow.BredDate = SowBredDate.Date;
                 sow.DueDate = SowDueDate.Date;
+                sow.Status = "";
+                // determine what the status is after the dates have been modified
+                sow.DetermineStatus();
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
                     conn.Update(sow);
