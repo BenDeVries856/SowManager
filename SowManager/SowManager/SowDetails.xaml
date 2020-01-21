@@ -15,6 +15,11 @@
                  - the user can also remove sows from this page
             -->
 
+            <!-- Sow Status -->
+            <Entry x:Name="SowStatus"
+                Text="" 
+                IsReadOnly="True"/>
+            
             <!-- Sow Number -->
             <Label Text="Sow Number:"
                 HorizontalOptions="CenterAndExpand" />
@@ -68,6 +73,20 @@
                 HorizontalOptions="Fill"
                 Clicked="BreedButtonClicked" 
                 TextColor="White" 
+                BackgroundColor="#3483EB" />
+
+            <!-- Button to farrow the sow -->
+            <Button Text="Farrow Sow" x:Name="FarrowButton"
+                HorizontalOptions="Fill"
+                Clicked="FarrowButtonClicked" 
+                TextColor="White" 
+                BackgroundColor="#3483EB" />
+            
+            <!-- Button to ultrasound the sow -->
+            <Button Text="Complete Ultrasound" x:Name="UltrasoundButton"
+                HorizontalOptions="Fill"
+                Clicked="UltrasoundButtonClicked"
+                TextColor="White"
                 BackgroundColor="#3483EB" />
 
             <!-- Button to delete the sow -->

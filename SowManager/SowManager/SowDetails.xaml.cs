@@ -42,6 +42,7 @@ namespace SowManager
             base.OnAppearing();
 
             // plug the selected sows information into the page form
+            SowStatus.Text = sow.Status;
             SowNo.Text = sow.SowNo;
             KnickName.Text = sow.KnickName;
             if(sow.FarrowedDate.HasValue)
@@ -51,11 +52,24 @@ namespace SowManager
             if(sow.DueDate.HasValue)
                 SowDueDate.Date = (DateTime) sow.DueDate;
 
-            // only enable to breed button if the sow status is READY_TO_BREED
+            // only enable the breed button if the sow status is READY_TO_BREED
             if(sow.Status != "READY_TO_BREED")
             {
                 BreedButton.IsEnabled = false;
             }
+
+            // only enable the farrow button if the sow status is DUE
+            if(sow.Status != "DUE")
+            {
+                FarrowButton.IsEnabled = false;
+            }
+
+            // only enable the ultrasound button if the sow status id PENDING_ULTRASOUND
+            if(sow.Status != "PENDING_ULTRASOUND")
+            {
+                UltrasoundButton.IsEnabled = false;
+            }
+
         }
 
         async void EditButtonClicked(object sender, EventArgs args)
@@ -67,6 +81,14 @@ namespace SowManager
                 if (sow.Status == "READY_TO_BREED")
                 {
                     BreedButton.IsVisible = true;
+                }
+                if(sow.Status == "DUE")
+                {
+                    FarrowButton.IsVisible = true;
+                }
+                if(sow.Status == "PENDING_ULTRASOUND")
+                {
+                    UltrasoundButton.IsVisible = true;
                 }
                 RemoveButton.IsVisible = true;
                 // disable the inputs
@@ -92,6 +114,8 @@ namespace SowManager
                 // hide the buttons
                 EditButton.Text = "Save";
                 BreedButton.IsVisible = false;
+                FarrowButton.IsVisible = false;
+                UltrasoundButton.IsVisible = false;
                 RemoveButton.IsVisible = false;
                 // enable the inputs
                 KnickName.IsReadOnly = false;
@@ -107,6 +131,18 @@ namespace SowManager
         {
             // Navigate to the Breed Sow Page
             await Navigation.PushAsync(new BreedSow(sow.ID));
+        }
+
+        async void FarrowButtonClicked(object sender, EventArgs args)
+        {
+            // Navigate to the Farrow Sow Page
+            await Navigation.PushAsync(new FarrowSow(sow.ID));
+        }
+
+        async void UltrasoundButtonClicked(object sender, EventArgs args)
+        {
+            // Navigate to the Complete Ultrasound Page
+            await Navigation.PushAsync(new UltrasoundSow(sow.ID));
         }
 
         async void RemoveButtonClicked(object sender, EventArgs args)

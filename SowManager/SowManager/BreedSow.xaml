@@ -10,7 +10,7 @@
 
             <!-- Breed Sow Page
                  Allows the user to enter a breed date and update a given sow accordingly -->
-            
+
             <!-- Label for the Sow Number -->
             <Label Text="Sow Number:"
                 HorizontalOptions="CenterAndExpand" />

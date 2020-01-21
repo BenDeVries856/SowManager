@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SowManager.UltrasoundSow">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <!-- Label for the Sow Number -->
+            <Label Text="Sow Number:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="SowNo" 
+                Text="" 
+                IsReadOnly="True"/>
+
+            <!-- Date Picker for the user to select the ultrasound date -->
+            <Label Text="Date of Ultrasound:"
+                HorizontalOptions="CenterAndExpand" />
+            <DatePicker x:Name="UltrasoundDate"
+                MinimumDate="01/01/2018"
+                MaximumDate="01/15/2020"
+                Date="01/15/2018" />
+
+            <Button Text="Submit"
+                HorizontalOptions="Fill"
+                Clicked="SubmitButtonClicked" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

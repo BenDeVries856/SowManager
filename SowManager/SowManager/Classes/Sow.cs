@@ -82,14 +82,10 @@ namespace SowManager
         // TODO: add a document to explain each of the statuses
         // this is the variable that is stored in the database
         // the Status variable below is just the getter and setter
-        private string status;
-
-        // [Ignore] means it won't be stored in the sqlite database
-        // makes sure the status entered is valid or sets it to NO_STATUS
-        [Ignore]
+        private string _status;
         public string Status
         {
-            get { return status; }
+            get { return _status; }
             set
             {
                 switch (value)
@@ -101,14 +97,20 @@ namespace SowManager
                     case "ULTRASOUND_COMPLETE":
                     case "DUE":
                     case "FARROWED":
-                        status = value;
+                        this._status = value;
                         break;
                     // if not, set to NO_STATUS
                     default:
-                        status = "NO_STATUS";
+                        this._status = "NO_STATUS";
                         break;
                 }
             }
+        }
+
+        public Boolean Alive
+        {
+            get;
+            set;
         }
 
         public Sow()
@@ -118,6 +120,50 @@ namespace SowManager
             BredDate = null;
             UltrasoundDate = null;
             DueDate = null;
+            Alive = true;
+        }
+
+        // breeds the sow
+        // sets the bred date and determines the due date and ultrasound date based off of it
+        // sets the status to BRED
+        public void Breed(DateTime dateBred)
+        {
+            // only check the farrowed date if there is one (it is not needed)
+            if (Status == "READY_TO_BREED" && ((!FarrowedDate.HasValue) || 
+                (FarrowedDate.HasValue && DaysBetween(dateBred, FarrowedDate) >= 29)))
+            {
+                BredDate = dateBred;
+                DueDate = dateBred.AddDays(113);
+                UltrasoundDate = dateBred.AddDays(27);
+                Status = "BRED";
+            }
+            // else throw exception
+        }
+
+        // completes and ultrasound for the sow
+        // moves the sow to the ULTRASOUND_COMPLETE status
+        public void Ultrasound(DateTime ultrasoundDate)
+        {
+            if(Status == "PENDING_ULTRASOUND" && BredDate.HasValue && DaysBetween(ultrasoundDate, BredDate) >= 26)
+            {
+                UltrasoundDate = ultrasoundDate;
+                Status = "ULTRASOUND_COMPLETE";
+            }
+            // else throw exception
+            // throw an exception if it doesn't have breddate
+        }
+
+        // farrows a sow
+        // moves the sow to the FARROWED status
+        public void Farrow(DateTime farrowedDate)
+        {
+            if(Status == "DUE" && BredDate.HasValue && DaysBetween(farrowedDate, BredDate) >= 113)
+            {
+                FarrowedDate = farrowedDate;
+                Status = "FARROWED";
+            }
+            // else throw exception
+            // throw an exception if it doesn't have a breddate
         }
 
 
@@ -127,32 +173,44 @@ namespace SowManager
         {
             if(Status == "BRED")
             {
-                // move to PENDING_ULTRA_SOUND
+                // move to PENDING_ULTRA_SOUND if 27 days has passed and DUE if 113 days have passed since the last date bred
+                if (BredDate.HasValue)
+                {
+                    if (DaysBetween(BredDate, DateTime.Now) >= 113)
+                        Status = "DUE";
+                    else if(DaysBetween(BredDate, DateTime.Now) >= 27)
+                        Status = "PENDING_ULTRASOUND";
+                }
+                else
+                {
+                    // throw exception
+                }
             }
             else if(Status == "ULTRASOUND_COMPLETE")
             {
-                // move to DUE
+                // move to DUE if 113 days have passed since the last date bred
+                if (BredDate.HasValue)
+                {
+                    if (DaysBetween(BredDate, DateTime.Now) >= 113)
+                        Status = "DUE";
+                }
+                else
+                {
+                    // throw exception
+                }
             }
             else if(Status == "FARROWED")
             {
-                // move to READY_TO_BREED
-            }
-        }
-
-        // breeds the sow
-        // sets the bred date and determines the due date and ultrasound date based off of it
-        // sets the status to BRED
-        // TODO:
-        //  - make sure 29 days has passed since farrowed date
-        //  - make sure the status is READY_TO_BREED
-        public void Breed(DateTime dateBred)
-        {
-            if (Status == "READY_TO_BREED" && DaysBetween(dateBred, FarrowedDate) >= 29)
-            {
-                BredDate = dateBred;
-                DueDate = dateBred.AddDays(113);
-                UltrasoundDate = dateBred.AddDays(27);
-                Status = "BRED";
+                // move to READY_TO_BREED if 29 days have passed since the farrowed date
+                if (FarrowedDate.HasValue)
+                {
+                    if (DaysBetween(FarrowedDate, DateTime.Now) >= 29)
+                        Status = "READY_TO_BREED";
+                }
+                else
+                {
+                    // throw exception
+                }
             }
         }
 
@@ -170,8 +228,10 @@ namespace SowManager
                     {
                         if (DaysBetween(BredDate, DateTime.Now) >= 113)
                             Status = "DUE";
-                        else
+                        else if (DaysBetween(BredDate, DateTime.Now) >= 27)
                             Status = "ULTRASOUND_COMPLETE";
+                        else
+                            Status = "BRED";
                     }
                     else if (FarrowedDate > BredDate)
                     {
@@ -190,8 +250,10 @@ namespace SowManager
                 {
                     if (DaysBetween(BredDate, DateTime.Now) >= 113)
                         Status = "DUE";
-                    else
+                    else if (DaysBetween(BredDate, DateTime.Now) >= 27)
                         Status = "ULTRASOUND_COMPLETE";
+                    else
+                        Status = "BRED";
                 }
                 // if only the farrowed date was provided
                 else if (FarrowedDate.HasValue)

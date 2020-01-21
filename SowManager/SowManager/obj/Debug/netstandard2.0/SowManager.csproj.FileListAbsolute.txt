@@ -15,3 +15,6 @@ C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstanda
 C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\SowDetails.xaml.g.cs
 C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\BreedSow.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\FarrowSow.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\UltrasoundSow.xaml.g.cs
+C:\Users\ben_d\source\repos\SowManager\SowManager\SowManager\obj\Debug\netstandard2.0\Litters.xaml.g.cs

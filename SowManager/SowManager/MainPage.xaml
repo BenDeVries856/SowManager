@@ -12,7 +12,13 @@
         <!-- This is the page that will load when the user first opens the app -->
         <!-- TODO:
              - should have abutton to go to a page where the user can go to a different barn
-             - should have a todo lost of all that needs to be done in the sow barn-->
+             - should have a todo lost of all that needs to be done in the sow barn
+             - create a test button to move 1 day forward in the future (also 1 month, 1 year)
+                this will actually move all dates for all sows back a day (instead of moving forward present date)
+             - create a method to populate the database with test data (some from each status)
+             - create a table that tracks full past sow cycles (once a litters has been born)
+             - go through methods and make sure they have all the data and handle exceptions (breed, farrow, ultrasound)
+        -->
         
         <!-- button navigates to a page that lists all the sows in the barn and lets the users 
              edit or add new sows -->
@@ -23,6 +29,34 @@
         <Button Text="Litters"
                 HorizontalOptions="Fill"
                 Clicked="LittersButtonClicked" />
+
+        <Button Text="Test Data"
+                HorizontalOptions="Fill"
+                Clicked="TestDataButtonClicked" />
+
+        <ListView x:Name="TODOListView" ItemTapped="ActionItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.66*"/>
+                                <ColumnDefinition Width="0.33*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Label Text="{Binding Name}"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Button Text="{Binding ButtonText}"
+                                    IsVisible="{Binding IsVisible}"
+                                    TextColor="White"
+                                    BackgroundColor="{Binding ButtonColor}" />
+                            </Grid>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </StackLayout>
 

@@ -19,6 +19,13 @@ namespace SowManager
             set;
         }
 
+        // a link to the sow that farrowed the litter
+        public int SowID
+        {
+            get;
+            set;
+        }
+
         // the number of piglets that survived burth
         public int Alive
         {

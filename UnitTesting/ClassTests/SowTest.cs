@@ -101,6 +101,40 @@ namespace UnitTesting
             Assert.AreEqual(referenceDate, sow.FarrowedDate);
         }
 
+        // test ultrasound
+        [TestMethod]
+        public void TestUltrasound()
+        {
+            DateTime referenceDate = DateTime.Now;
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                BredDate = DateTime.Now.AddDays(-27),
+                Status = "PENDING_ULTRASOUND"
+            };
+            sow.Ultrasound(referenceDate);
+            Assert.AreEqual("ULTRASOUND_COMPLETE", sow.Status);
+            Assert.AreEqual(referenceDate, sow.UltrasoundDate);
+        }
+
+        // test farrow
+        [TestMethod]
+        public void TestFarrow()
+        {
+            DateTime referenceDate = DateTime.Now;
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                BredDate = DateTime.Now.AddDays(-113),
+                Status = "DUE"
+            };
+            sow.Farrow(referenceDate);
+            Assert.AreEqual("FARROWED", sow.Status);
+            Assert.AreEqual(referenceDate, sow.FarrowedDate);
+        }
+
         // TEST DetermineDate()
         // TODO modify tests to account for ultrasounds
         // TODO add test for farrowed date == bred date (which should test for an exception)
@@ -239,6 +273,116 @@ namespace UnitTesting
                 KnickName = "Jim",
             };
             sow.DetermineStatus();
+            Assert.AreEqual("READY_TO_BREED", sow.Status);
+        }
+
+        // test Update method
+
+        // BRED
+        // - < 27 days since bred date
+        [TestMethod]
+        public void TestUpdateBred1()
+        {
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                Status = "BRED",
+                BredDate = DateTime.Now.AddDays(-26)
+            };
+            sow.Update();
+            Assert.AreEqual("BRED", sow.Status);
+        }
+
+        // - >= 27 days < 113
+        [TestMethod]
+        public void TestUpdateBred2()
+        {
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                Status = "BRED",
+                BredDate = DateTime.Now.AddDays(-27)
+            };
+            sow.Update();
+            Assert.AreEqual("PENDING_ULTRASOUND", sow.Status);
+        }
+
+        // - >= 113 days
+        [TestMethod]
+        public void TestUpdateBred3()
+        {
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                Status = "BRED",
+                BredDate = DateTime.Now.AddDays(-113)
+            };
+            sow.Update();
+            Assert.AreEqual("DUE", sow.Status);
+        }
+
+        // ULTRASOUND_COMPLETE
+        // - < 113 days
+        [TestMethod]
+        public void TestUpdateUltrasoundComplete1()
+        {
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                Status = "ULTRASOUND_COMPLETE",
+                BredDate = DateTime.Now.AddDays(-112)
+            };
+            sow.Update();
+            Assert.AreEqual("ULTRASOUND_COMPLETE", sow.Status);
+        }
+
+        // - >= 113 days
+        [TestMethod]
+        public void TestUpdateUltrasoundComplete2()
+        {
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                Status = "ULTRASOUND_COMPLETE",
+                BredDate = DateTime.Now.AddDays(-113)
+            };
+            sow.Update();
+            Assert.AreEqual("DUE", sow.Status);
+        }
+
+        // FARROWED
+        // - < 29 days
+        [TestMethod]
+        public void TestUpdateFarrowed1()
+        {
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                Status = "FARROWED",
+                FarrowedDate = DateTime.Now.AddDays(-28)
+            };
+            sow.Update();
+            Assert.AreEqual("FARROWED", sow.Status);
+        }
+
+        // - > 29 days
+        [TestMethod]
+        public void TestUpdateFarrowed2()
+        {
+            Sow sow = new Sow()
+            {
+                SowNo = "1324",
+                KnickName = "Jim",
+                Status = "FARROWED",
+                FarrowedDate = DateTime.Now.AddDays(-29)
+            };
+            sow.Update();
             Assert.AreEqual("READY_TO_BREED", sow.Status);
         }
 

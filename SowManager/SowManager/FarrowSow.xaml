@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SowManager.FarrowSow">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <!-- Label for the Sow Number -->
+            <Label Text="Sow Number:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="SowNo" 
+                Text="" 
+                IsReadOnly="True"/>
+
+            <!-- Alive -->
+            <Label Text="Alive:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="LitterAlive"
+                Text="" />
+
+            <!-- Dead -->
+            <Label Text="Dead:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="LitterDead"
+                Text="" />
+
+            <!-- Mummified -->
+            <Label Text="Mummified:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="LitterMummified"
+                Text="" />
+
+            <!-- Fostered In -->
+            <Label Text="Fostered In:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="LitterFosteredIn"
+                Text="" />
+
+            <!-- Fostered Out -->
+            <Label Text="Fostered Out:"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="LitterFosteredOut"
+                Text="" />
+
+            <!-- Submit Button -->
+            <Button Text="Submit"
+                HorizontalOptions="Fill"
+                Clicked="SubmitButtonClicked" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
